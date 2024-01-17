@@ -11,6 +11,7 @@ def setup():
     events = get_events.list_events(t, t + datetime.timedelta(days=365))
     print(len(events))
 
+
 if __name__ == '__main__':
     setup()
     # start()
