@@ -1,0 +1,4 @@
+CREDENTIALS_FILE: 'client_secret_683304562389-1395acv0qdh9joulqh3vf8emc5jk0thu.apps.googleusercontent.com.json'
+APP_NAME: 'Calendar'
+API_VERSION: 'v3'
+SCOPES: ["https://www.googleapis.com/auth/calendar.readonly"]

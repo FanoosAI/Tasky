@@ -1,0 +1,35 @@
+welcome-message: False
+
+
+connectors:
+  matrix:
+    # Required
+    mxid: "@bot_dev_reg:parsi.ai"
+    password: "123456"
+    rooms:
+      'main': '#memyselfandsaee:parsi.ai'
+    # Optional
+    homeserver: "https://parsi.ai"
+    nick: "Tasky"  # The nick will be set on startup
+    device_id: "OPSDroid"
+    enable_encryption: True
+
+
+#parsers:
+#  rasanlu:
+#    url: http://localhost:5005
+#    min-score: 0.8
+
+
+skills:
+  hello: { }
+  nlu:
+    path: nlu/nlu.py
+  all:
+    path: skills/all_events.py
+
+logging:
+  level: info
+  path: ~/.opsdroid/output.log
+  console: true
+  extended: true

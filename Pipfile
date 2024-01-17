@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 opsdroid = {extras = ["matrix_e2e"], version = "*"}
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+pyyaml = "*"
 
 [dev-packages]
 
