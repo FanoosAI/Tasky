@@ -15,18 +15,18 @@ connectors:
     enable_encryption: True
 
 
-#parsers:
-#  rasanlu:
-#    url: http://localhost:5005
-#    min-score: 0.8
+parsers:
+  rasanlu:
+    url: http://0.0.0.0:5005
+    min-score: 0.3
 
 
 skills:
   hello: { }
   nlu:
     path: nlu/nlu.py
-  all:
-    path: skills/all_events.py
+#  all:
+#    path: skills/all_events.py
 
 logging:
   level: info

@@ -26,3 +26,23 @@ def init():
             CREDENTIALS = flow.run_local_server(port=8080)
         with open('token.json', 'w') as token:
             token.write(CREDENTIALS.to_json())
+
+
+def init_url():
+    global CREDENTIALS
+    google_config = yaml.safe_load(open('google_config.yaml'))
+    scopes = google_config['SCOPES']
+    credentials_file = google_config['CREDENTIALS_FILE']
+
+    if os.path.exists('token.json'):
+        CREDENTIALS = Credentials.from_authorized_user_file("token.json", scopes)
+
+    if not CREDENTIALS or not CREDENTIALS.valid:
+        if CREDENTIALS and CREDENTIALS.expired and CREDENTIALS.refresh_token:
+            CREDENTIALS.refresh(Request())
+            return "no need for authorization"
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_file, scopes)
+            return flow.authorization_url(prompt='consent')
+        # with open('token.json', 'w') as token:
+        #     token.write(CREDENTIALS.to_json())
