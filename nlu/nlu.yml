@@ -1,0 +1,114 @@
+version: "3.1"
+
+nlu:
+  - intent: add_event
+    examples: |
+      - remind me to [read](event) at [11/11/22 10:00](time)
+      - add event [meeting with team](event) at [1/8/2023 1:00 AM](time)
+      - add in calendar [gym](event) at [10/9/23 1:00 PM](time)
+
+  - intent: get_event
+    examples: |
+      - what events do I have?
+      - what are my calendar events?
+      - show me all my calendar events
+
+  - intent: authorize_google_init
+    examples: |
+      - authorize google
+      - authorize google calendar
+      - authorize google account
+      - authorize google calendar account
+
+
+
+  - intent: farsi_get_event
+    examples: |
+      - چه رویدادهایی دارم؟
+      - رویدادهای تقویم من چیست؟
+      - همه رویدادهای تقویم من را نشان بده
+      - رویدادهای تقویم من را نشان بده
+      - رویداد‌های [امروز](date) را نشان بده
+      - رویدادهای [فردا](date) را نشان بده
+      - رویدادهای [این هفته](date) را نشان بده
+      - رویدادهای [۱ فروردین](date) را نشان بده
+      - رویدادهای [۱۲ اردیبهشت](date) را نشان بده
+      - رویدادهای [۲۴ خرداد](date) را نشانم بده
+      - رویدادهای [۱۶ تیر](date) را نشان بده
+      - رخداد‌های [۲ دی](date) را نشان بده
+      - رویدادهای [۱۸ مرداد](date) را نشان بده
+      - رویدادهای [۲۴ آذر](date) را نشان بده
+      - رویدادهای [۱۴ مهر](date) را نشان بده
+
+
+  - intent: farsi_add_event
+    examples: |
+      - به من یادآوری کن [خواندن درس](event) در [۱۵  بهمن](date)
+      - رویداد اضافه کن [جلسه با تیم](event) در [۲۰ اسفند](date) ساعت [۸ شب](time)
+      - در تقویم اضافه کن [باشگاه ورزشی](event) در [۹ دی](date) ساعت [۱ ظهر](time)
+      - رویداد [باشگاه](event) در [۱ فروردین](date) ساعت [۱۰ صبح](time)
+      - [باشگاه](event) در [۲ شهریور](date) ساعت [۵ عصر](time)
+      - [کتاب خوانی](event) در [۷ تیر](date) ساعت [۱۰ شب](time)
+      - [مدرسه](event) [۱۲ خرداد](date) ساعت [۸ صبح](time)
+      - [کلاس زبان](event) [۱۲ اردیبهشت](date) ساعت [۱۰ صبح](time)
+      - [کار](event) [۱۴ مرداد](date) ساعت [۱۲ ظهر](time)
+      - [کار](event) [۱۶ مرداد](date) ساعت [۱۲ ظهر](time)
+      - [کار](event) [۱۴ مهر](date) ساعت [۱۱ صبح](time)
+      - [تفریح](event) [۱۴ آذر](date) ساعت [۱۲:۳۰ ظهر](time)
+      - [استراحت](event) [۲۴ آبان](date) ساعت [۲:۳۰ ظهر](time)
+      - [کار کردن](event) [۱۳ بهمن](date) ساعت [۱۲ شب](time)
+
+
+  - intent: greet
+    examples: |
+      - سلام
+      - سلاااام
+      - شروع
+
+  - intent: goodbye
+    examples: |
+      - خدافظ
+      - مرسی
+      - خداحافظ
+
+  - intent: authorize_google
+    examples: |
+      - اجازه دسترسی در گوگل
+      - در گوگل لاگین کن
+      - وارد گوگل شو
+
+
+  - intent: done
+    examples: |
+      - انجام شد
+      - تمام شد
+      - انجام دادم
+
+
+  - intent: problem
+    examples: |
+      - مشکل پیش آمده
+      - مشکل را ریپورت کن
+      - اشکالی به وجود آمده
+      - مشکل دارم
+
+  - intent: confirm
+    examples: |
+      - درسته
+      - بله
+      - اضافه کن
+      - خودشه
+      - مشکلی نداره
+
+  - intent: deny
+    examples: |
+      - نه
+      - اشتباهه
+      - مشکل داره
+      - خیر
+      - کنسل کن
+      - کنسلش کن
+      - نمی‌خواهم
+      - نمی‌خوام
+      - لغو شود
+     
