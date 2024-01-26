@@ -1,18 +1,43 @@
-import datetime
+from sys import argv
 
-from opsdroid.cli import start
+# from opsdroid.cli import start
+from opsdroid.cli.utils import (
+    check_dependencies,
+    configure_lang,
+    welcome_message,
+)
+from opsdroid.configuration import load_config_file
+from opsdroid.const import DEFAULT_CONFIG_LOCATIONS
+from opsdroid.core import OpsDroid
+from opsdroid.logging import configure_logging
 
 import googleAPI
-from googleAPI import get_events
+import mongo_manager
 
 
 def setup():
-    googleAPI.init()
-    t = datetime.datetime(year=2022, month=1, day=1)
-    events = get_events.list_events(t, t + datetime.timedelta(days=365))
-    print(len(events))
+    # googleAPI.init()
+    mongo_manager.setup()
+
+
+def start_server(path=None):
+    check_dependencies()
+
+    config_path = [path] if path else DEFAULT_CONFIG_LOCATIONS
+    config = load_config_file(config_path)
+
+    configure_lang(config)
+    configure_logging(config.get("logging", {}))
+    welcome_message(config)
+
+    with OpsDroid(config=config, config_path=config_path) as opsdroid:
+        opsdroid.run()
 
 
 if __name__ == '__main__':
-    # setup()
-    start()
+    setup()
+    if len(argv) > 1:
+        if argv[1]:
+            start_server(argv[1])
+
+    start_server()

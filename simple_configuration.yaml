@@ -14,11 +14,11 @@ connectors:
     device_id: "OPSDroid"
     enable_encryption: True
 
-
-parsers:
-  rasanlu:
-    url: http://0.0.0.0:5005
-    min-score: 0.3
+#
+#parsers:
+#  rasanlu:
+#    url: http://0.0.0.0:5005
+#    min-score: 0.3
 
 databases:
   mongo:
@@ -32,8 +32,8 @@ databases:
 
 skills:
   hello: { }
-  nlu:
-    path: nlu/nlu.py
+#  nlu:
+#    path: nlu/nlu.py
   test:
     path: skills/test_skill.py
   all:

@@ -1,12 +1,12 @@
 from pprint import pprint
 
 from opsdroid.skill import Skill
-from opsdroid.matchers import match_always, match_event
+from opsdroid.matchers import match_catchall, match_event
 from opsdroid.events import UserInvite, JoinRoom, LeaveRoom
 
 
 class AllEventsSkill(Skill):
-    @match_always
+    @match_catchall
     async def all_events(self, event):
         print("\n---ALWAYS---\n")
         print(f"all events -> {event}")
