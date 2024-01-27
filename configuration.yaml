@@ -33,7 +33,7 @@ databases:
 skills:
   hello: { }
   nlu:
-    path: nlu/nlu.py
+    path: nlu/rasa_calendar.py
   test:
     path: skills/test_skill.py
   all:

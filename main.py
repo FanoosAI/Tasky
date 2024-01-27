@@ -11,8 +11,7 @@ from opsdroid.const import DEFAULT_CONFIG_LOCATIONS
 from opsdroid.core import OpsDroid
 from opsdroid.logging import configure_logging
 
-import googleAPI
-import mongo_manager
+from mongo_manager import __init__
 
 
 def setup():
