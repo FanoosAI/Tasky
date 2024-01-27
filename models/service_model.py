@@ -13,7 +13,7 @@ class Service(mongoengine.EmbeddedDocument):
     def __init__(self, states=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not kwargs.get('_created', False):
+        if not kwargs.get('_created', True):
             # This line checks if the object is being created for the first time or if it is being loaded from the DB.
             return
 

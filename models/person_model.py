@@ -14,10 +14,10 @@ class Person(Document):
 
     def __init__(self, username: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.id:
+        if not kwargs.get('_created', True):
             # This line checks if the object is being created for the first time or if it is being loaded from the DB.
             return
-
+        print("new instance!")
         self.username = username
         if not self.google_service:
             self.google_service = GoogleCalendarService()
