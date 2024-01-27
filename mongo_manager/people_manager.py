@@ -1,24 +1,19 @@
-from typing import List, Tuple
-import mongo_manager
+from typing import List
 from models.person_model import Person
+from mongo_manager import exceptions
 
 
-def _collection():
-    return mongo_manager.db["people"]
-
-
-def get_people() -> List[Tuple[str, str]]:
-    people = _collection().find({}, {"_id": 0})
-    return [(person["username"], person["state"]) for person in people]
+def get_people() -> List[Person]:
+    return Person.objects.all()
 
 
 def user_exists(username: str) -> bool:
-    return _collection().find_one({"username": username}) is not None
+    return Person.objects(username=username).count() > 0
 
 
 def initiate_user(username: str):
+    if user_exists(username):
+        raise exceptions.UserAlreadyExistsException("user already exists")
     person = Person(username)
-    # collection.insert_one(person.__dict__)
+    person.save()
     return person
-
-

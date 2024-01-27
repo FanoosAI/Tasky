@@ -6,12 +6,11 @@ class Service(mongoengine.EmbeddedDocument):
     states = ['UnAuthenticated', 'Ready', 'PendingRequest', ]
     state = mongoengine.StringField(required=True)
 
-    def __init__(self, states=None):
-        super().__init__()
+    def __init__(self, states=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
         if states is None:
             states = Service.states
-            print(states[0])
         self.machine = transitions.Machine(model=self, states=states, initial=states[0])
 
         self.machine.add_transition('authenticated', 'UnAuthenticated', 'Ready')
@@ -32,6 +31,7 @@ class GoogleCalendarService(Service):
     def authenticate(self, token):
         self.token = token
         self.authenticated()
+
     def __str__(self):
         return f"GoogleCalendarService: {self.state}"
 

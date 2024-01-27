@@ -12,11 +12,13 @@ class Person(Document):
         'collection': 'people'
     }
 
-    def __init__(self, username: str):
-        super().__init__()
+    def __init__(self, username: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.username = username
-        self.google_service = GoogleCalendarService()
-        self.odoo_service = OdooService()
+        if not self.google_service:
+            self.google_service = GoogleCalendarService()
+        if not self.odoo_service:
+            self.odoo_service = OdooService()
 
     def __str__(self):
         return f"Person: {self.username}"

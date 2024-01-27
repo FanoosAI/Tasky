@@ -25,8 +25,8 @@ def setup(config_file: str = "configuration.yaml"):
     db = client["tasky"]
 
 
-def setup_orm():
-    db_config = yaml.safe_load(open("configuration.yaml"))["databases"]["mongo"]
+def setup_orm(config_file: str = "configuration.yaml"):
+    db_config = yaml.safe_load(open(config_file))["databases"]["mongo"]
     mongoengine.connect(
         db_config["database"],
         username=db_config["user"],

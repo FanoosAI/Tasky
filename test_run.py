@@ -6,17 +6,21 @@ import json
 
 
 def main():
-    mongo_manager.setup()
-    p = initiate_user("test")
-
-
-def engine():
     mongo_manager.setup_orm()
-    p = person_model.Person(username="test")
-    p.google_service.authenticate("GoogleToken")
-    p.save()
+    # print(user_exists("ssaaeee@parsi.ai"))
+    # person_model.Person.objects.delete()
+    # person_model.Person(username="user1").save()
+    # person_model.Person(username="user2").save()
+    # try:
+    #     initiate_user("user1")
+    # except exceptions.UserAlreadyExistsException:
+    #     print("skipped user initiation")
+
+    print(get_people()[0].google_service.state)
+
+    # p = Person(username="user1", __auto_convert=True)
+    # print(p)
 
 
 if __name__ == '__main__':
-    # main()
-    engine()
+    main()
