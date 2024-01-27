@@ -16,10 +16,14 @@ def main():
     # except exceptions.UserAlreadyExistsException:
     #     print("skipped user initiation")
 
-    print(get_people()[0].google_service.state)
+    # user = get_person('user1')
+    # user.google_service.authenticate("token 3:11PM")
+    # user.save()
+    # print(user.google_service.state)
 
-    # p = Person(username="user1", __auto_convert=True)
-    # print(p)
+
+    user1 = get_person('user1')
+    print(user1.google_service.state)
 
 
 if __name__ == '__main__':

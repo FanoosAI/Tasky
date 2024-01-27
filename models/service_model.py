@@ -6,8 +6,16 @@ class Service(mongoengine.EmbeddedDocument):
     states = ['UnAuthenticated', 'Ready', 'PendingRequest', ]
     state = mongoengine.StringField(required=True)
 
+    meta = {
+        'allow_inheritance': True
+    }
+
     def __init__(self, states=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        if not kwargs.get('_created', False):
+            # This line checks if the object is being created for the first time or if it is being loaded from the DB.
+            return
 
         if states is None:
             states = Service.states
@@ -16,10 +24,6 @@ class Service(mongoengine.EmbeddedDocument):
         self.machine.add_transition('authenticated', 'UnAuthenticated', 'Ready')
         self.machine.add_transition('requested', 'Ready', 'PendingRequest')
         self.machine.add_transition('finished_request', 'PendingRequest', 'Ready')
-
-    meta = {
-        'allow_inheritance': True
-    }
 
     def __str__(self):
         return f"Service: {self.state}"

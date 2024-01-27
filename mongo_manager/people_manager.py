@@ -7,6 +7,10 @@ def get_people() -> List[Person]:
     return Person.objects.all()
 
 
+def get_person(username: str) -> Person:
+    return Person.objects(username=username).first()
+
+
 def user_exists(username: str) -> bool:
     return Person.objects(username=username).count() > 0
 
