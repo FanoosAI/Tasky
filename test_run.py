@@ -8,12 +8,15 @@ import json
 def main():
     mongo_manager.setup()
     p = initiate_user("test")
-    pprint(p.__dict__)
-    mongo_manager.db["people"].insert_one(json.dumps(p))
+
+
+def engine():
+    mongo_manager.setup_orm()
+    p = person_model.Person(username="test")
+    p.google_service.authenticate("GoogleToken")
+    p.save()
 
 
 if __name__ == '__main__':
     # main()
-    s = service_model.OdooService()
-    # s = service_model.Service()
-    print(s.reprJSON())
+    engine()

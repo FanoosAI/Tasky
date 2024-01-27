@@ -1,8 +1,8 @@
-from os import getenv
 from typing import List, Optional, Tuple
 
 import pymongo
 from pymongo import database
+import mongoengine
 import yaml
 
 client: Optional[pymongo.MongoClient] = None
@@ -23,6 +23,19 @@ def setup(config_file: str = "configuration.yaml"):
         authMechanism="SCRAM-SHA-1",
     )
     db = client["tasky"]
+
+
+def setup_orm():
+    db_config = yaml.safe_load(open("configuration.yaml"))["databases"]["mongo"]
+    mongoengine.connect(
+        db_config["database"],
+        username=db_config["user"],
+        password=db_config["password"],
+        host=db_config["host"],
+        port=db_config["port"],
+        authentication_source="tasky",
+        authentication_mechanism="SCRAM-SHA-1",
+    )
 
 
 def get_people() -> List[Tuple[str, str]]:

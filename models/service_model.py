@@ -1,38 +1,39 @@
 import transitions
+import mongoengine
 
 
-class Service:
+class Service(mongoengine.EmbeddedDocument):
     states = ['UnAuthenticated', 'Ready', 'PendingRequest', ]
+    state = mongoengine.StringField(required=True)
 
     def __init__(self, states=None):
-        if states is not None:
+        super().__init__()
+
+        if states is None:
             states = Service.states
-        self.machine = transitions.Machine(model=self, states=states, initial='UnAuthenticated')
+            print(states[0])
+        self.machine = transitions.Machine(model=self, states=states, initial=states[0])
 
         self.machine.add_transition('authenticated', 'UnAuthenticated', 'Ready')
         self.machine.add_transition('requested', 'Ready', 'PendingRequest')
         self.machine.add_transition('finished_request', 'PendingRequest', 'Ready')
 
-    def reprJSON(self):
-        return dict(service_type=self.__class__.__name__, state=self.state)
+    meta = {
+        'allow_inheritance': True
+    }
+
+    def __str__(self):
+        return f"Service: {self.state}"
 
 
 class GoogleCalendarService(Service):
-
-    def __init__(self):
-        super().__init__()
-        self.token = None
+    token = mongoengine.StringField(required=False)
 
     def authenticate(self, token):
         self.token = token
         self.authenticated()
-
-    def reprJSON(self):
-        d = super().reprJSON()
-        d.update({
-            "token": self.token
-        })
-        return d
+    def __str__(self):
+        return f"GoogleCalendarService: {self.state}"
 
 
 class OdooService(Service):
