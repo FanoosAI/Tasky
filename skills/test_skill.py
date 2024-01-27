@@ -11,9 +11,8 @@ class TestSkill(Skill):
     async def test_event(self, event):
         print("\n---TEST---\n")
 
-        response = "all people defined in the database:"
+        response = "all people defined in the database: \n"
         people = mongo_manager.get_people()
-        for person in people:
-            response += f"{person[0]} -> {person[1]} "
+        response += "\n".join([person[0] + "->" + person[1] for person in people])
 
         await event.respond(response)
